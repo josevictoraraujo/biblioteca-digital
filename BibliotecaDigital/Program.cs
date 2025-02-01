@@ -12,7 +12,7 @@ class Program
         int opInt = Convert.ToInt32(op);
         BibliotecaService biblioteca = new BibliotecaService();
 
-        while(opInt > 0)
+        while(opInt != 5)
         {
             if(opInt == 1)
             {
@@ -36,6 +36,29 @@ class Program
                 Console.Clear();
                 ExibirMenu();
             }
+            else if(opInt == 2)
+            {
+                biblioteca.ListarLivros();
+                Console.WriteLine("\nPressione qualquer tecla para voltar para o menu principal");
+                Console.ReadKey();
+                Thread.Sleep(3000);
+                ExibirMenu();
+            }
+            else if(opInt == 3)
+            {
+                Console.WriteLine("Para atualizar as informações do livro forneça os seguintes dados: ");
+                Console.WriteLine("Digite o ID do livro");
+                int id = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Digite o número do campo que você deseja atualizar: ");
+                Console.WriteLine("1-Título\r2-Autor\n3-Ano\n4-Disponivel");
+                int campo = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Digite a informação atualizada");
+                string campoAtualizado = Console.ReadLine();
+                if(campo == 3 || campo == 4)
+                {
+
+                }
+            }
         };
     }
 
@@ -49,4 +72,9 @@ class Program
         Console.WriteLine("4. Remover Livro");
         Console.WriteLine("5. Sair");
     }
+
+    //static object ConverteCampo()
+    //{
+
+    //}
 }

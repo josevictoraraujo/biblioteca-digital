@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "EnTXdHc5KhU=",
+  "dgSpecHash": "EMnuhVO9Bbg=",
   "success": true,
   "projectFilePath": "C:\\Git\\BibliotecaDigital\\BibliotecaDigital\\BibliotecaDigital.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\victo\\.nuget\\packages\\system.io.pipelines\\9.0.1\\system.io.pipelines.9.0.1.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\system.text.encodings.web\\9.0.1\\system.text.encodings.web.9.0.1.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\system.text.json\\9.0.1\\system.text.json.9.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
