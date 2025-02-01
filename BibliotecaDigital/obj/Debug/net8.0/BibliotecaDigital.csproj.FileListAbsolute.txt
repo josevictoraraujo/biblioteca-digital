@@ -12,3 +12,10 @@ C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\refint\BibliotecaDig
 C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\BibliotecaDigital.pdb
 C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\BibliotecaDigital.genruntimeconfig.cache
 C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\ref\BibliotecaDigital.dll
+C:\Git\BibliotecaDigital\BibliotecaDigital\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\Git\BibliotecaDigital\BibliotecaDigital\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+C:\Git\BibliotecaDigital\BibliotecaDigital\bin\Debug\net8.0\System.Text.Json.dll
+C:\Git\BibliotecaDigital\BibliotecaDigital\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\BibliotecaDigital.csproj.AssemblyReference.cache
+C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\BibliotecaDigital.sourcelink.json
+C:\Git\BibliotecaDigital\BibliotecaDigital\obj\Debug\net8.0\Bibliote.C3D67B43.Up2Date
