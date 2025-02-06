@@ -18,7 +18,7 @@ public class BibliotecaService
 
     private List<Livro> livros = new List<Livro>();
     private static int contadorId = 1; // Inicia em 1
-    private readonly string caminhoArquivo = "C:\\Curso\\C#\\biblioteca.json";
+    private readonly string caminhoArquivo = "C:\\Teste\\Biblioteca\\biblioteca.json";
 
     public void AdicionarLivro(Livro livro)
     {
@@ -26,7 +26,7 @@ public class BibliotecaService
         contadorId++;
         livros.Add(livro);
         SalvarDados(); // Atualiza o arquivo JSON
-        Console.WriteLine($"O livro {livro.Titulo} foi adicionado com sucesso.");
+        Console.WriteLine($"\nO livro {livro.Titulo} foi adicionado com sucesso.");
     }
 
     public void ListarLivros()
@@ -36,31 +36,34 @@ public class BibliotecaService
 
         foreach(var livro in livros)
         {
-            Console.WriteLine($"Id: {livro.Id}. Título: {livro.Titulo}. Autor: {livro.Autor}, Ano: {livro.Ano}, Disponível: {livro.Disponivel}");
+            Console.WriteLine($"\nId: {livro.Id}. Título: {livro.Titulo}. Autor: {livro.Autor}, Ano: {livro.Ano}, Disponível: {livro.Disponivel}");
         }
     }
 
-    public void AtualizarLivro(int id, Livro livroAtualizado)
+    public void AtualizarLivro()
     {
+        Livro livroRetorno = new Livro();
+        CarregarDados();
+        Console.WriteLine("Para atualizar as informações do livro forneça os seguintes dados: ");
+        Console.WriteLine("Digite o ID do livro");
+        int id = Convert.ToInt32(Console.ReadLine());
+
         // Percorre a lista de livros para selecionar o livro pelo ID
-        foreach(var livro in livros)
+        foreach (var livro in livros)
         {
             if(livro.Id == id)
             {
-                livro.Titulo = livroAtualizado.Titulo;
-                livro.Autor = livroAtualizado.Autor;
-                livro.Ano = livroAtualizado.Ano;
-                livro.Disponivel = livroAtualizado .Disponivel;
-                continue;
-            }
-            else
-            {
-                Console.WriteLine("Livro não encontrado. Verifique se o ID está correto.");
-                return;
+                livroRetorno = AtualizaInformacoesLivro(livro);
+                livro.Titulo = livroRetorno.Titulo;
+                livro.Autor = livroRetorno.Autor;
+                livro.Ano = livroRetorno.Ano;
+                livro.Disponivel = livroRetorno.Disponivel;
+                break;
             }
         }
 
-        Console.WriteLine($"O livro {livroAtualizado.Titulo} foi atualizado com sucesso.");
+        SalvarDados();
+        Console.WriteLine($"O livro {livroRetorno.Titulo} foi atualizado com sucesso.");
     }
 
     public void RemoverLivro(int id)
@@ -81,8 +84,21 @@ public class BibliotecaService
 
     private void SalvarDados()
     {
-        string json = JsonSerializer.Serialize(livros, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(caminhoArquivo, json);
+        try
+        {
+            var opcoes = new JsonSerializerOptions
+            {
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // Permite caracteres acentuados
+                WriteIndented = true
+            };
+
+            string json = JsonSerializer.Serialize(livros, opcoes);
+            File.WriteAllText(caminhoArquivo, json);
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }    
     }
 
     private void CarregarDados()
@@ -98,9 +114,61 @@ public class BibliotecaService
                 contadorId = livros.Max(x => x.Id) + 1;
             }
         }
-        else
+    }
+
+    static Livro AtualizaInformacoesLivro(Livro livroAtualizado)
+    {
+        try
         {
-            File.Create(caminhoArquivo);
+            List<int> camposAtualizacao = new List<int>();
+            int campo;
+            Console.WriteLine("\nDigite o(s) número(s) do(s) campo(s) você deseja atualizar: ");
+            Console.WriteLine("\n1-Título\n2-Autor\n3-Ano\n4-Disponível\nDigite 5 para continuar com a atualização");
+
+            do
+            {
+                campo = Convert.ToInt32(Console.ReadLine());
+
+                if (campo >= 1 && campo <= 4)
+                {
+                    camposAtualizacao.Add(campo);
+                }
+            } while (campo != 5);
+
+            foreach (int item in camposAtualizacao)
+            {
+                if (item == 1)
+                {
+                    Console.WriteLine("\nDigite o Título atualizado: ");
+                    livroAtualizado.Titulo = Console.ReadLine();
+                }
+                else if (item == 2)
+                {
+                    Console.WriteLine("\nDigite o nome do Autor atualizado: ");
+                    livroAtualizado.Autor = Console.ReadLine();
+                }
+                else if (item == 3)
+                {
+                    Console.WriteLine("\nDigite o ano atualizado: ");
+                    livroAtualizado.Ano = Convert.ToInt32(Console.ReadLine());
+                }
+                else if (item == 4)
+                {
+                    Console.WriteLine("\nDigite se o livro está disponível (Sim/Não): ");
+                    livroAtualizado.Disponivel = Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Campo não existe para atualizar!");
+                }
+            }
+
+            return livroAtualizado;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
         }
     }
 }
