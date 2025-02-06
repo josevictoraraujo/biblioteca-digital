@@ -7,14 +7,12 @@ class Program
 {
     public static void Main(string[] args)
     {
-        ExibirMenu();
-        string op = Console.ReadLine();
-        int opInt = Convert.ToInt32(op);
+        int opcao = ExibirMenu();
         BibliotecaService biblioteca = new BibliotecaService();
 
-        while(opInt != 5)
+        while (opcao != 5)
         {
-            if(opInt == 1)
+            if (opcao == 1)
             {
                 Console.Write("\nDigite o título do livro: ");
                 string titulo = Console.ReadLine();
@@ -26,55 +24,47 @@ class Program
                 string ano = Console.ReadLine();
                 int anoInt = Convert.ToInt32(ano);
 
-                Console.Write("Disponível (S/N): ");
+                Console.Write("Disponível (Sim/Não): ");
                 string disponivel = Console.ReadLine();
-                bool status = disponivel.Equals("S".ToUpper()) ? true : false;
 
-                Livro livro = new Livro(titulo, autor, anoInt, status);
+                Livro livro = new Livro(titulo, autor, anoInt, disponivel);
                 biblioteca.AdicionarLivro(livro);
-                Thread.Sleep(5000);
+                Console.WriteLine("Pressione qualquer tecla para continuar...");
+                Console.ReadKey();
                 Console.Clear();
-                ExibirMenu();
+                opcao = ExibirMenu();
             }
-            else if(opInt == 2)
+            else if (opcao == 2)
             {
                 biblioteca.ListarLivros();
-                Console.WriteLine("\nPressione qualquer tecla para voltar para o menu principal");
+                Console.WriteLine("Pressione qualquer tecla para continuar...");
                 Console.ReadKey();
-                Thread.Sleep(3000);
-                ExibirMenu();
+                Console.Clear();
+                opcao = ExibirMenu();
             }
-            else if(opInt == 3)
+            else if (opcao == 3)
             {
-                Console.WriteLine("Para atualizar as informações do livro forneça os seguintes dados: ");
-                Console.WriteLine("Digite o ID do livro");
-                int id = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Digite o número do campo que você deseja atualizar: ");
-                Console.WriteLine("1-Título\r2-Autor\n3-Ano\n4-Disponivel");
-                int campo = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Digite a informação atualizada");
-                string campoAtualizado = Console.ReadLine();
-                if(campo == 3 || campo == 4)
-                {
-
-                }
+                biblioteca.AtualizarLivro();
+                Console.WriteLine("Pressione qualquer tecla para continuar...");
+                Console.ReadKey();
+                Console.Clear();
+                opcao = ExibirMenu();
             }
         };
     }
 
-    static void ExibirMenu()
+    static int ExibirMenu()
     {
         Console.WriteLine("Bem-Vindo!");
         Console.WriteLine("\nDigite o Número da Opção Desejada: ");
-        Console.WriteLine("1. Adicionar Livro");
-        Console.WriteLine("2. Listar Livros");
+        Console.WriteLine("\n1. Adicionar um Livro");
+        Console.WriteLine("2. Exibir Livros");
         Console.WriteLine("3. Atualizar Livro");
         Console.WriteLine("4. Remover Livro");
         Console.WriteLine("5. Sair");
+        string op = Console.ReadLine();
+        int opInt = Convert.ToInt32(op);
+
+        return opInt;
     }
-
-    //static object ConverteCampo()
-    //{
-
-    //}
 }
