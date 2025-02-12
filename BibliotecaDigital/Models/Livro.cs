@@ -8,7 +8,7 @@ namespace BibliotecaDigital.Models;
 
 public class Livro
 {
-    public Livro(string titulo, string autor, int ano, bool disponivel)
+    public Livro(string titulo, string autor, int ano, string disponivel)
     {
         Titulo = titulo;
         Autor = autor;
@@ -16,10 +16,15 @@ public class Livro
         Disponivel = disponivel;
     }
 
+    public Livro()
+    {
+
+    }
+
     public int Id {  get; set; }
     public string Titulo {  get; set; }
     public string Autor {  get; set; }
     public int Ano {  get; set; }
-    public bool Disponivel {  get; set; }
+    public string Disponivel {  get; set; }
 
 }
