@@ -36,7 +36,7 @@ public class BibliotecaService
 
         foreach(var livro in livros)
         {
-            Console.WriteLine($"\nId: {livro.Id}. Título: {livro.Titulo}. Autor: {livro.Autor}, Ano: {livro.Ano}, Disponível: {livro.Disponivel}");
+            Console.WriteLine($"\nId: {livro.Id} \nTítulo: {livro.Titulo} \nAutor: {livro.Autor} \nAno: {livro.Ano} \nDisponível: {livro.Disponivel}");
         }
     }
 
@@ -66,8 +66,13 @@ public class BibliotecaService
         Console.WriteLine($"O livro {livroRetorno.Titulo} foi atualizado com sucesso.");
     }
 
-    public void RemoverLivro(int id)
+    public void RemoverLivro()
     {
+        Livro livroRetorno = new Livro();
+        CarregarDados();
+        Console.WriteLine("Para remover um livro forneça o ID do livro: ");
+        int id = Convert.ToInt32(Console.ReadLine());
+
         string titulo = "";
         foreach(var livro in livros)
         {
@@ -75,10 +80,11 @@ public class BibliotecaService
             {
                 titulo = livro.Titulo;
                 livros.Remove(livro);
-                continue;
+                break;
             }
         }
 
+        SalvarDados();
         Console.WriteLine($"O livro {titulo} foi removido com sucesso.");
     }
 

@@ -50,6 +50,27 @@ class Program
                 Console.Clear();
                 opcao = ExibirMenu();
             }
+            else if(opcao == 4)
+            {
+                biblioteca.RemoverLivro();
+                Console.WriteLine("Pressione qualquer tecla para continuar...");
+                Console.ReadKey();
+                Console.Clear();
+                opcao = ExibirMenu();
+            }
+            else if(opcao == 5)
+            {
+                Console.WriteLine("\nA aplicação será encerrada em 5 segundos");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("\nOpção inválida. Digite o número de uma opção válida.");
+                Thread.Sleep(3000);
+                Console.Clear();
+                opcao = ExibirMenu();
+            }
         };
     }
 
