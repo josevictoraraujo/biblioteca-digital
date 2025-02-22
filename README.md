@@ -6,11 +6,10 @@ Os livros são armazenados em **JSON**, garantindo persistência dos dados.
 2-Funcionalidades
 
 - Adicionar livros
-
-![Adicionar Livros](biblioteca-digital/Images/Add.png)
+![Adicionar Livros](Images/Add.png)
 
 - Listar livros
-![Lista de Livros](biblioteca-digital/Images/Lista.png)
+![Lista de Livros](Images/Lista.png)
 
 - Remover livros
 - Salvar e carregar dados automaticamente via JSON
