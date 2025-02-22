@@ -6,7 +6,8 @@ Os livros são armazenados em **JSON**, garantindo persistência dos dados.
 2-Funcionalidades
 
 - Adicionar livros
-![Adicionar livros](C:\Git\BibliotecaDigital\Images\Add.png)
+
+![Adicionar livros](biblioteca-digital/Images/Add.png)
 
 - Listar livros
 - Remover livros
